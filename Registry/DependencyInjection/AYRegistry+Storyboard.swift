@@ -22,11 +22,11 @@ public extension AYRegistry {
      
         override init() {
             super.init()
-            swizzle1()
-            swizzle2()
+            swizzleInstantiateViewControllerWithId()
+            swizzleInstantiateInitialViewController()
         }
         
-        func swizzle1() {
+        private func swizzleInstantiateViewControllerWithId() {
             let originalSelector = #selector(UIStoryboard.instantiateViewController(withIdentifier:))
             let swizzledSelector = #selector(UIStoryboard.ay_swizzledInstantiateViewController(withId:))
             
@@ -36,9 +36,9 @@ public extension AYRegistry {
             method_exchangeImplementations(originalMethod, swizzledMethod)
         }
         
-        func swizzle2() {
+        private func swizzleInstantiateInitialViewController() {
             let originalSelector = #selector(UIStoryboard.instantiateInitialViewController)
-            let swizzledSelector = #selector(UIStoryboard.ay_swizzledInstantiateInitial)
+            let swizzledSelector = #selector(UIStoryboard.ay_swizzledInstantiateInitialViewController)
             
             let originalMethod = class_getInstanceMethod(UIStoryboard.self, originalSelector)
             let swizzledMethod = class_getInstanceMethod(UIStoryboard.self, swizzledSelector)
@@ -46,7 +46,6 @@ public extension AYRegistry {
             method_exchangeImplementations(originalMethod, swizzledMethod)
         }
         
-
     }
     
     public final func registerStoryboardInjection<ComponentType>(storyboardId: String, injection: @escaping (ComponentType) -> ()) {
@@ -64,8 +63,8 @@ extension UIStoryboard {
         return controller
     }
     
-    func ay_swizzledInstantiateInitial() -> UIViewController {
-        let controller = self.ay_swizzledInstantiateInitial()
+    func ay_swizzledInstantiateInitialViewController() -> UIViewController {
+        let controller = self.ay_swizzledInstantiateInitialViewController()
         if let storyboardId = controller.value(forKeyPath: "storyboardIdentifier") as? String {
             AYRegistry.Holder.shared.storyboardInjections[storyboardId]?(controller)
         } else if let restorationId = controller.restorationIdentifier {
