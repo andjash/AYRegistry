@@ -16,6 +16,16 @@ class NewsFeedStoryRegistry: AYRegistry {
         let coreRegistry = ModulesRegistry.shared.resolve() as CoreRegistry
         registerStoryboardInjection(storyboardId: "NewsViewController") { (controller: NewsViewController) in
             controller.parser = coreRegistry.resolve() as NewsParser
+            controller.presenter = self.resolve() as NewsFeedPresenter
+        }
+        
+        register(lifetime: .objectGraph, initCall: { NewsFeedPresenter() }) { obj in
+            obj.interactor = self.resolve() as NewsFeedInteractor
+        }
+        
+        register(lifetime: .objectGraph, initCall: { NewsFeedInteractor() }) { obj in
+            obj.preseneter = self.resolve() as NewsFeedPresenter
+            
         }
         
     }

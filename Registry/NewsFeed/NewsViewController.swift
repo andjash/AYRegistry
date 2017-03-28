@@ -12,21 +12,23 @@ class NewsViewController: UIViewController {
 
     public var parser: NewsParser?
     
+    var presenter: NewsFeedPresenter!
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Didload \(parser)")
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func closeAction(_ sender: AnyObject?) {
+        self.dismiss(animated: true, completion: nil)
     }
-
+    
+    deinit {
+        print("Deinit \(self)")
+    }
 
 }
 

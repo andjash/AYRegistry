@@ -1,24 +1,22 @@
 //
-//  FeedParser.swift
+//  NewsFeedInteractor.swift
 //  Registry
 //
-//  Created by Andrey Yashnev on 26/03/2017.
+//  Created by Andrey Yashnev on 28/03/2017.
 //  Copyright © 2017 Andrey Yashnev. All rights reserved.
 //
 
 import Foundation
 
-
-class FeedParser {
+class NewsFeedInteractor {
     
-    var newsParser: NewsParser?
+    weak var preseneter: NewsFeedPresenter!
     
     init() {
-        print("Feed parser init \(self)")
+        print("Init \(self)")
     }
     
     deinit {
         print("Deinit \(self)")
     }
-
 }

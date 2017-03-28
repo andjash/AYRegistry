@@ -18,4 +18,8 @@ class NewsParser {
         print("News parser init \(self)")
     }
     
+    deinit {
+        print("Deinit \(self)")
+    }
+
 }
