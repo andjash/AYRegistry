@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'AYRegistry'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'DI in 100 lines of code!'
   s.description      = 'Simple dependency injection container for your needs'
 

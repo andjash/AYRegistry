@@ -14,8 +14,8 @@ class ModulesRegistry: AYRegistry {
     public static let shared = ModulesRegistry()
     
     public func activate() {
-        register(lifetime: .singletone(lazy: false), initCall: { CoreRegistry() })
-        register(lifetime: .singletone(lazy: false), initCall: { NewsFeedStoryRegistry() })
+        register(lifetime: .singleton(lazy: false), initCall: { CoreRegistry() })
+        register(lifetime: .singleton(lazy: false), initCall: { NewsFeedStoryRegistry() })
     }
     
 }
