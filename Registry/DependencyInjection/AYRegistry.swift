@@ -11,8 +11,9 @@ import Foundation
 public class AYRegistry {
     
     private var singletones: [String : Any] = [:]
-    private var graphWeakStorage = NSMapTable<NSString, AnyObject>(keyOptions: .strongMemory, valueOptions: .weakMemory)
+    private var graphObjects: [String : AnyObject] = [:]
     private var graphs: [String] = []
+    private var graphStackDepth = 0
     private var objectsInitCalls: [String : () -> Any] = [:]
     private var objectsInjectCalls: [String : (Any) -> ()] = [:]
     
@@ -23,8 +24,8 @@ public class AYRegistry {
     }
     
     public final func register<ComponentType>(lifetime: Lifetime = .singletone(lazy: true),
-                               initCall: @escaping () -> ComponentType,
-                               injectCall: ((ComponentType) -> ())? = nil) {
+                                              initCall: @escaping () -> ComponentType,
+                                              injectCall: ((ComponentType) -> ())? = nil) {
         let key = String(describing: type(of: ComponentType.self))
         
         switch lifetime {
@@ -45,7 +46,24 @@ public class AYRegistry {
         }
     }
     
+    public final func unregister<ComponentType>(type: ComponentType.Type) {
+        let key = String(describing: Swift.type(of: ComponentType.self))
+        if let index = graphs.index(of: key) {
+            graphs.remove(at: index)
+        }
+        singletones[key] = nil
+        objectsInitCalls[key] = nil
+        objectsInjectCalls[key] = nil
+    }
+    
     public final func resolve<ComponentType>() -> ComponentType {
+        defer {
+            if graphStackDepth == 0 {
+                graphObjects.removeAll()
+            }
+        }
+        
+        
         let key = String(describing: type(of: ComponentType.self))
         
         if let result = singletones[key] as? ComponentType {
@@ -55,14 +73,16 @@ public class AYRegistry {
         if let result = singletones[key] as? () -> ComponentType {
             let object = result()
             singletones[key] = object
+            graphStackDepth += 1
             objectsInjectCalls[key]?(object)
+            graphStackDepth -= 1
             return object
         }
         
         var graphObject = false
         if graphs.contains(key) {
             graphObject = true
-            if let res = graphWeakStorage.object(forKey: key as NSString) {
+            if let res = graphObjects[key] {
                 return res as! ComponentType
             }
         }
@@ -70,12 +90,15 @@ public class AYRegistry {
         guard let result = objectsInitCalls[key]?() as? ComponentType else {
             fatalError("Cannot resolve init call for \(ComponentType.self)")
         }
-      
+        
         if graphObject {
-            graphWeakStorage.setObject(result as AnyObject, forKey: key as NSString)
+            graphObjects[key] = result as AnyObject
         }
         
+        graphStackDepth += 1
         objectsInjectCalls[key]?(result)
+        graphStackDepth -= 1
+        
         return result
     }
 }

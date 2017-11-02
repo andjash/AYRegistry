@@ -33,7 +33,7 @@ public extension AYRegistry {
             let originalMethod = class_getInstanceMethod(UIStoryboard.self, originalSelector)
             let swizzledMethod = class_getInstanceMethod(UIStoryboard.self, swizzledSelector)
             
-            method_exchangeImplementations(originalMethod, swizzledMethod)
+            method_exchangeImplementations(originalMethod!, swizzledMethod!)
         }
         
         private func swizzleInstantiateInitialViewController() {
@@ -43,7 +43,7 @@ public extension AYRegistry {
             let originalMethod = class_getInstanceMethod(UIStoryboard.self, originalSelector)
             let swizzledMethod = class_getInstanceMethod(UIStoryboard.self, swizzledSelector)
             
-            method_exchangeImplementations(originalMethod, swizzledMethod)
+            method_exchangeImplementations(originalMethod!, swizzledMethod!)
         }
         
     }
@@ -57,13 +57,13 @@ public extension AYRegistry {
 
 extension UIStoryboard {
     
-    func ay_swizzledInstantiateViewController(withId id: String) -> UIViewController {
+    @objc func ay_swizzledInstantiateViewController(withId id: String) -> UIViewController {
         let controller = self.ay_swizzledInstantiateViewController(withId: id)
         AYRegistry.Holder.shared.storyboardInjections[id]?(controller)
         return controller
     }
     
-    func ay_swizzledInstantiateInitialViewController() -> UIViewController {
+    @objc func ay_swizzledInstantiateInitialViewController() -> UIViewController {
         let controller = self.ay_swizzledInstantiateInitialViewController()
         if let storyboardId = controller.value(forKeyPath: "storyboardIdentifier") as? String {
             AYRegistry.Holder.shared.storyboardInjections[storyboardId]?(controller)
