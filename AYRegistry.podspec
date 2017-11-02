@@ -15,12 +15,12 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/andjash/AYRegistry'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'andjash' => 'andjash@yandex-team.ru' }
+  s.author           = { 'andjash' => 'andjash@gmail.ru' }
   s.source           = { :git => 'https://github.com/andjash/AYRegistry.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'AYRegistry/Classes/**/*'
-  
+
 end
