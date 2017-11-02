@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'AYRegistry_Example' do
+  pod 'AYRegistry', :path => '../'
+
+  target 'AYRegistry_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
