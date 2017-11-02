@@ -1,0 +1,6 @@
+framework module Pods_AYRegistry_Example {
+  umbrella header "Pods-AYRegistry_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

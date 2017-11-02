@@ -15,6 +15,16 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		C0FCB0E8DFD4A6912C29F050 /* Pods_AYRegistry_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97DB390591BF56A462985807 /* Pods_AYRegistry_Example.framework */; };
+		CC8C45EC1FABA58E00C0B35F /* ModulesRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C45E01FABA58D00C0B35F /* ModulesRegistry.swift */; };
+		CC8C45ED1FABA58E00C0B35F /* NewsFeedInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C45E21FABA58D00C0B35F /* NewsFeedInteractor.swift */; };
+		CC8C45EE1FABA58E00C0B35F /* NewsFeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C45E31FABA58D00C0B35F /* NewsFeedPresenter.swift */; };
+		CC8C45F01FABA58E00C0B35F /* NewsFeedStoryRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C45E51FABA58D00C0B35F /* NewsFeedStoryRegistry.swift */; };
+		CC8C45F11FABA58E00C0B35F /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C45E61FABA58D00C0B35F /* NewsViewController.swift */; };
+		CC8C45F21FABA58E00C0B35F /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C45E71FABA58E00C0B35F /* NewsService.swift */; };
+		CC8C45F31FABA58E00C0B35F /* FeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C45E81FABA58E00C0B35F /* FeedParser.swift */; };
+		CC8C45F41FABA58E00C0B35F /* NavigationRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C45E91FABA58E00C0B35F /* NavigationRootViewController.swift */; };
+		CC8C45F51FABA58E00C0B35F /* NewsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C45EA1FABA58E00C0B35F /* NewsParser.swift */; };
+		CC8C45F61FABA58E00C0B35F /* CoreRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C45EB1FABA58E00C0B35F /* CoreRegistry.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,8 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		09F7466FE15D0897521C14E7 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		4F07CB33CA598972B912DE18 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		09F7466FE15D0897521C14E7 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		4F07CB33CA598972B912DE18 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* AYRegistry_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AYRegistry_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,8 +55,18 @@
 		7A6AB014B91577795E7DE0CF /* Pods-AYRegistry_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AYRegistry_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-AYRegistry_Example/Pods-AYRegistry_Example.release.xcconfig"; sourceTree = "<group>"; };
 		97DB390591BF56A462985807 /* Pods_AYRegistry_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AYRegistry_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB9852BC394DDB4ADBD06F1 /* Pods-AYRegistry_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AYRegistry_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AYRegistry_Tests/Pods-AYRegistry_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		CC8C45E01FABA58D00C0B35F /* ModulesRegistry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModulesRegistry.swift; sourceTree = "<group>"; };
+		CC8C45E21FABA58D00C0B35F /* NewsFeedInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFeedInteractor.swift; sourceTree = "<group>"; };
+		CC8C45E31FABA58D00C0B35F /* NewsFeedPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFeedPresenter.swift; sourceTree = "<group>"; };
+		CC8C45E51FABA58D00C0B35F /* NewsFeedStoryRegistry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFeedStoryRegistry.swift; sourceTree = "<group>"; };
+		CC8C45E61FABA58D00C0B35F /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		CC8C45E71FABA58E00C0B35F /* NewsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
+		CC8C45E81FABA58E00C0B35F /* FeedParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedParser.swift; sourceTree = "<group>"; };
+		CC8C45E91FABA58E00C0B35F /* NavigationRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationRootViewController.swift; sourceTree = "<group>"; };
+		CC8C45EA1FABA58E00C0B35F /* NewsParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsParser.swift; sourceTree = "<group>"; };
+		CC8C45EB1FABA58E00C0B35F /* CoreRegistry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreRegistry.swift; sourceTree = "<group>"; };
 		CE41AB771BA2DB1A9FB8B011 /* Pods-AYRegistry_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AYRegistry_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AYRegistry_Tests/Pods-AYRegistry_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		CF7D59E946C5B8B06B59FE7A /* AYRegistry.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = AYRegistry.podspec; path = ../AYRegistry.podspec; sourceTree = "<group>"; };
+		CF7D59E946C5B8B06B59FE7A /* AYRegistry.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = AYRegistry.podspec; path = ../AYRegistry.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +124,13 @@
 		607FACD21AFB9204008FA782 /* Example for AYRegistry */ = {
 			isa = PBXGroup;
 			children = (
+				CC8C45EB1FABA58E00C0B35F /* CoreRegistry.swift */,
+				CC8C45E81FABA58E00C0B35F /* FeedParser.swift */,
+				CC8C45E01FABA58D00C0B35F /* ModulesRegistry.swift */,
+				CC8C45E91FABA58E00C0B35F /* NavigationRootViewController.swift */,
+				CC8C45E11FABA58D00C0B35F /* NewsFeed */,
+				CC8C45EA1FABA58E00C0B35F /* NewsParser.swift */,
+				CC8C45E71FABA58E00C0B35F /* NewsService.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -157,6 +184,17 @@
 				770A643CEE9D533198281381 /* Pods_AYRegistry_Tests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CC8C45E11FABA58D00C0B35F /* NewsFeed */ = {
+			isa = PBXGroup;
+			children = (
+				CC8C45E21FABA58D00C0B35F /* NewsFeedInteractor.swift */,
+				CC8C45E31FABA58D00C0B35F /* NewsFeedPresenter.swift */,
+				CC8C45E51FABA58D00C0B35F /* NewsFeedStoryRegistry.swift */,
+				CC8C45E61FABA58D00C0B35F /* NewsViewController.swift */,
+			);
+			path = NewsFeed;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -370,8 +408,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC8C45EC1FABA58E00C0B35F /* ModulesRegistry.swift in Sources */,
+				CC8C45F51FABA58E00C0B35F /* NewsParser.swift in Sources */,
+				CC8C45EE1FABA58E00C0B35F /* NewsFeedPresenter.swift in Sources */,
+				CC8C45F61FABA58E00C0B35F /* CoreRegistry.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				CC8C45F41FABA58E00C0B35F /* NavigationRootViewController.swift in Sources */,
+				CC8C45F21FABA58E00C0B35F /* NewsService.swift in Sources */,
+				CC8C45F31FABA58E00C0B35F /* FeedParser.swift in Sources */,
+				CC8C45F01FABA58E00C0B35F /* NewsFeedStoryRegistry.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				CC8C45ED1FABA58E00C0B35F /* NewsFeedInteractor.swift in Sources */,
+				CC8C45F11FABA58E00C0B35F /* NewsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +511,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -508,6 +557,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
