@@ -15,7 +15,7 @@ class NewsFeedStoryRegistry: AYRegistry {
         super.init()
         
         let coreRegistry = ModulesRegistry.shared.resolve() as CoreRegistry
-        registerStoryboardInjection(storyboardId: "NewsViewController") { (controller: NewsViewController) in
+        registerStoryboardInjection(NewsViewController.self, storyboardId: "NewsViewController") { (controller: NewsViewController) in
             controller.parser = coreRegistry.resolve() as NewsParser
             controller.presenter = self.resolve() as NewsFeedPresenter
         }
