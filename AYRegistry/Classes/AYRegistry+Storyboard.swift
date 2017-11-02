@@ -19,11 +19,10 @@ public extension AYRegistry {
         static var shared = Holder()
         
         var storyboardInjections: [String : (Any) -> ()] = [:]
-     
+        
         override init() {
             super.init()
             swizzleInstantiateViewControllerWithId()
-            swizzleInstantiateInitialViewController()
         }
         
         private func swizzleInstantiateViewControllerWithId() {
@@ -36,20 +35,15 @@ public extension AYRegistry {
             method_exchangeImplementations(originalMethod!, swizzledMethod!)
         }
         
-        private func swizzleInstantiateInitialViewController() {
-            let originalSelector = #selector(UIStoryboard.instantiateInitialViewController)
-            let swizzledSelector = #selector(UIStoryboard.ay_swizzledInstantiateInitialViewController)
-            
-            let originalMethod = class_getInstanceMethod(UIStoryboard.self, originalSelector)
-            let swizzledMethod = class_getInstanceMethod(UIStoryboard.self, swizzledSelector)
-            
-            method_exchangeImplementations(originalMethod!, swizzledMethod!)
-        }
         
     }
     
-    public final func registerStoryboardInjection<ComponentType>(storyboardId: String, injection: @escaping (ComponentType) -> ()) {
-        Holder.shared.storyboardInjections[storyboardId] = { injection($0 as! ComponentType) }
+    public final func registerStoryboardInjection<ComponentType>(_ type: ComponentType.Type,storyboardId: String, injection: @escaping (ComponentType) -> ()) {
+        Holder.shared.storyboardInjections[storyboardId] = { [weak self] controller in
+            self?.register(lifetime: .objectGraph, initCall: { return controller as! ComponentType })
+            injection(controller as! ComponentType)
+            self?.unregister(type: type)
+        }
     }
     
 }
@@ -59,19 +53,35 @@ extension UIStoryboard {
     
     @objc func ay_swizzledInstantiateViewController(withId id: String) -> UIViewController {
         let controller = self.ay_swizzledInstantiateViewController(withId: id)
-        AYRegistry.Holder.shared.storyboardInjections[id]?(controller)
-        return controller
-    }
-    
-    @objc func ay_swizzledInstantiateInitialViewController() -> UIViewController {
-        let controller = self.ay_swizzledInstantiateInitialViewController()
-        if let storyboardId = controller.value(forKeyPath: "storyboardIdentifier") as? String {
-            AYRegistry.Holder.shared.storyboardInjections[storyboardId]?(controller)
-        } else if let restorationId = controller.restorationIdentifier {
-            AYRegistry.Holder.shared.storyboardInjections[restorationId]?(controller)
+        injectionFor(controller, withId: id)
+        for child in controller.childViewControllers {
+            injectionFor(child, withId: id)
         }
         return controller
     }
     
     
+    private func injectionFor(_ controller: UIViewController, withId: String? = nil) {
+        if let id = withId, let injection = AYRegistry.Holder.shared.storyboardInjections[id] {
+            injection(controller)
+            return
+        }
+        
+        if let storyboardId = controller.value(forKeyPath: "storyboardIdentifier") as? String,
+            let injection = AYRegistry.Holder.shared.storyboardInjections[storyboardId] {
+            injection(controller)
+            return
+        } else if let restorationId = controller.restorationIdentifier,
+            let injection = AYRegistry.Holder.shared.storyboardInjections[restorationId]{
+            injection(controller)
+            return
+        }
+        
+        let className = String(describing: type(of: controller))
+        if let injection = AYRegistry.Holder.shared.storyboardInjections[className] {
+            injection(controller)
+            return
+        }
+    }
 }
+
