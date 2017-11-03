@@ -8,6 +8,7 @@
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
+For more descriptive examples see https://github.com/andjash/TweetSpot
 
 ## Requirements
 
