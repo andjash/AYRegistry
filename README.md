@@ -23,7 +23,7 @@ pod 'AYRegistry'
 
 ## Author
 
-andjash, andjash@yandex-team.ru
+andjash, andjash@gmail.com
 
 ## License
 
